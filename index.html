@@ -73,13 +73,42 @@
       line-height: 1;
       padding: 4px;
     }
+    #pdf-mobile {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #pdf-mobile object {
+      width: 100%;
+      min-height: 100%;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Desktop -->
   <iframe
+    id="pdf-desktop"
     src="Morgan%20Brochure%202026_%28compressed%29.pdf"
     title="Morgan Brochure 2026"
   ></iframe>
+
+  <!-- Mobile -->
+  <div id="pdf-mobile">
+    <object
+      data="Morgan%20Brochure%202026_%28compressed%29.pdf"
+      type="application/pdf"
+      width="100%"
+      height="100%"
+    >
+      <p style="color:#fff;padding:24px;font-family:-apple-system,sans-serif;">
+        Unable to display PDF.
+        <a style="color:#fff" href="Morgan%20Brochure%202026_%28compressed%29.pdf">Click to view.</a>
+      </p>
+    </object>
+  </div>
 
   <div id="contact-banner">
     <p>
@@ -95,12 +124,12 @@
   <script>
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      window.location.replace('Morgan%20Brochure%202026_%28compressed%29.pdf');
-    } else {
-      setTimeout(() => {
-        document.getElementById('contact-banner').classList.add('show');
-      }, 30000);
+      document.getElementById('pdf-desktop').style.display = 'none';
+      document.getElementById('pdf-mobile').style.display = 'block';
     }
+    setTimeout(() => {
+      document.getElementById('contact-banner').classList.add('show');
+    }, 30000);
   </script>
 </body>
 </html>

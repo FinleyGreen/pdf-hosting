@@ -13,51 +13,18 @@
       height: 100%;
       border: none;
     }
-    .fallback {
-      display: none;
-      position: fixed;
-      inset: 0;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-      background: #525659;
-      color: #fff;
-      font-family: -apple-system, sans-serif;
-      text-align: center;
-      padding: 24px;
-    }
-    .fallback a {
-      color: #fff;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 12px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 15px;
-    }
   </style>
 </head>
 <body>
   <iframe
-    id="pdf-frame"
     src="Morgan%20Brochure%202026%20%28Compressed%29.pdf"
     title="Morgan Brochure 2026"
   ></iframe>
 
-  <div class="fallback" id="fallback">
-    <p>Your browser cannot display this PDF inline.</p>
-    <a href="Morgan%20Brochure%202026%20%28Compressed%29.pdf" download>Download Brochure</a>
-  </div>
-
   <script>
-    const frame = document.getElementById('pdf-frame');
-    const fallback = document.getElementById('fallback');
-    // iOS Safari and some mobile browsers can't render PDFs in iframes
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      frame.style.display = 'none';
-      fallback.style.display = 'flex';
+      window.location.replace('Morgan%20Brochure%202026%20%28Compressed%29.pdf');
     }
   </script>
 </body>

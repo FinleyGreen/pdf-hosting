@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>PDF</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morgan</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #525659; }
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .fallback {
+      display: none;
+      position: fixed;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      background: #525659;
+      color: #fff;
+      font-family: -apple-system, sans-serif;
+      text-align: center;
+      padding: 24px;
+    }
+    .fallback a {
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+  </style>
 </head>
 <body>
-  <h1>View PDF</h1>
-  <a href="Morgan Brochure 2026 (Compressed).pdf">Open PDF</a>
+  <iframe
+    id="pdf-frame"
+    src="Morgan%20Brochure%202026%20%28Compressed%29.pdf"
+    title="Morgan Brochure 2026"
+  ></iframe>
+
+  <div class="fallback" id="fallback">
+    <p>Your browser cannot display this PDF inline.</p>
+    <a href="Morgan%20Brochure%202026%20%28Compressed%29.pdf" download>Download Brochure</a>
+  </div>
+
+  <script>
+    const frame = document.getElementById('pdf-frame');
+    const fallback = document.getElementById('fallback');
+    // iOS Safari and some mobile browsers can't render PDFs in iframes
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      frame.style.display = 'none';
+      fallback.style.display = 'flex';
+    }
+  </script>
 </body>
 </html>

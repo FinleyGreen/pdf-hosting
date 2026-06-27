@@ -13,6 +13,66 @@
       height: 100%;
       border: none;
     }
+    #contact-banner {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 18px 24px;
+      font-family: -apple-system, sans-serif;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
+      animation: slideUp 0.4s ease;
+      z-index: 100;
+    }
+    #contact-banner.show { display: flex; }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    #contact-banner p {
+      font-size: 14px;
+      color: #ccc;
+      flex: 1;
+    }
+    #contact-banner p strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .banner-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .btn-contact {
+      background: #fff;
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-dismiss {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
   </style>
 </head>
 <body>
@@ -21,10 +81,25 @@
     title="Morgan Brochure 2026"
   ></iframe>
 
+  <div id="contact-banner">
+    <p>
+      <strong>Interested in working with us?</strong>
+      Leave your details and we'll be in touch.
+    </p>
+    <div class="banner-actions">
+      <a class="btn-contact" href="https://docs.google.com/forms/d/e/1FAIpQLSfKi4YR5ivfnH0BZoIWODZ1ZO4XLGv9KDIwA4B07LUKjKcJJw/viewform?usp=publish-editor" target="_blank">Get in touch</a>
+      <button class="btn-dismiss" onclick="document.getElementById('contact-banner').remove()">×</button>
+    </div>
+  </div>
+
   <script>
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       window.location.replace('Morgan%20Brochure%202026%20%28Compressed%29.pdf');
+    } else {
+      setTimeout(() => {
+        document.getElementById('contact-banner').classList.add('show');
+      }, 30000);
     }
   </script>
 </body>
